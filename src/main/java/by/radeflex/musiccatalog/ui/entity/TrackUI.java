@@ -78,6 +78,15 @@ public class TrackUI extends HBox {
         return track;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o instanceof TrackUI t) {
+            return t.getTrack().id().equals(getTrack().id());
+        }
+        return false;
+    }
+
     public TrackUI(TrackReadDto track, MainController mainController) {
         this.mainController = mainController;
         this.track = track;

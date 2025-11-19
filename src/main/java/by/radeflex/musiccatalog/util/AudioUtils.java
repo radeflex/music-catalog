@@ -24,6 +24,7 @@ public class AudioUtils {
             AudioFileIO.read(file);
             return true;
         } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }

@@ -72,8 +72,9 @@ public class MyLinkedList<T> implements Iterable<T> {
             return;
         }
         for (var node = head; node.next != null; node = node.next) {
-            if (node.val.equals(val)) {
+            if (node.next.val.equals(val)) {
                 node.next = node.next.next;
+                return;
             }
         }
     }
