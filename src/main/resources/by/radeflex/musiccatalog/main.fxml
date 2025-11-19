@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="720.0" prefWidth="1280.0" spacing="20.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="by.radeflex.musiccatalog.ui.controller.MainController">
+   <children>
+      <HBox alignment="CENTER" maxHeight="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="59.0" prefWidth="1080.0" spacing="630.0" VBox.vgrow="ALWAYS">
+         <children>
+            <HBox fx:id="searchBox" alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="341.0" spacing="10.0">
+               <children>
+                  <TextField fx:id="searchField" prefHeight="43.0" prefWidth="200.0" promptText="Исполнитель..." style="-fx-background-radius: 0px;">
+                     <font>
+                        <Font size="17.0" />
+                     </font></TextField>
+                  <Button mnemonicParsing="false" fx:id="searchButton" onAction="#searchTrack" prefHeight="43.0" prefWidth="43.0" text="">
+                     <font>
+                        <Font name="Font Awesome 7 Free Solid" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button mnemonicParsing="false" fx:id="clearButton" onAction="#clearSearch" prefHeight="43.0" prefWidth="43.0" text="X">
+                     <font>
+                        <Font name="Font Awesome 7 Free Solid" size="18.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#createTrack" prefHeight="43.0" prefWidth="145.0" text="Новый трек...">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <VBox.margin>
+            <Insets left="100.0" right="100.0" />
+         </VBox.margin>
+      </HBox>
+      <Label fx:id="searchResultLabel">
+         <VBox.margin>
+            <Insets left="100.0" />
+         </VBox.margin>
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="376.0" prefWidth="1090.0">
+         <children>
+            <VBox maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="556.0" prefWidth="1175.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <HBox prefHeight="45.0" prefWidth="1117.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#sortByAuthor" prefHeight="45.0" prefWidth="280.0" style="-fx-background-radius: 0; -fx-background-color: #a3a3a3; -fx-border-color: gray;" text="Исполнитель">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
+                        <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#sortByTitle" prefHeight="43.0" prefWidth="280.0" style="-fx-background-radius: 0; -fx-background-color: #a3a3a3; -fx-border-color: gray;" text="Название">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
+                        <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#sortByGenre" prefHeight="45.0" prefWidth="235.0" style="-fx-background-radius: 0; -fx-background-color: #a3a3a3; -fx-border-color: gray;" text="Жанр">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
+                        <Button alignment="BASELINE_LEFT" layoutX="609.0" layoutY="10.0" mnemonicParsing="false" onAction="#sortByDuration" prefHeight="45.0" prefWidth="180.0" style="-fx-background-radius: 0; -fx-background-color: #a3a3a3; -fx-border-color: gray;" text="Длительность">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#sortByExt" prefHeight="45.0" prefWidth="110.0" style="-fx-background-radius: 0; -fx-background-color: #a3a3a3; -fx-border-color: gray;" text="Формат">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets></HBox>
+                  <VBox fx:id="trackTable" alignment="TOP_CENTER" prefHeight="511.0" prefWidth="1135.0" spacing="10.0" VBox.vgrow="ALWAYS" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </VBox>
+         </children>
+         <VBox.margin>
+            <Insets left="100.0" right="100.0" />
+         </VBox.margin>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </VBox>
+   </children>
+</VBox>
