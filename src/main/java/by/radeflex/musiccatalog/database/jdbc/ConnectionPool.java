@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class ConnectionPool {
     private static final ConnectionPool INSTANCE = new ConnectionPool();
-    private final String URL = "jdbc:sqlite:C:\\Users\\Radeflex\\IdeaProjects\\music-catalog\\src\\main\\resources\\by\\radeflex\\musiccatalog\\storage.db";
+    private final String URL = "jdbc:sqlite:src/main/resources/by/radeflex/musiccatalog/storage.db";
 
     private ConnectionPool() {
         final String SCHEMA_PATH = "/by/radeflex/musiccatalog/schema.sql";
