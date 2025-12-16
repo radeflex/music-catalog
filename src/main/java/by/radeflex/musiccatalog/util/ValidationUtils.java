@@ -23,7 +23,8 @@ public class ValidationUtils {
         }
         if (dto.file() == null) {
             map.put("file", "выберите аудиофайл");
-        } else if (!AudioUtils.isAudioFile(dto.file())) {
+        } else if (!dto.file().getName().split("\\.")[1].equals("aac")
+                && !AudioUtils.isAudioFile(dto.file())) {
             map.put("file", "некорректный аудиофайл");
         }
 

@@ -5,6 +5,7 @@ module by.radeflex.musiccatalog {
     requires java.sql;
     requires java.desktop;
     requires jaudiotagger;
+    requires jave.core;
 
     opens by.radeflex.musiccatalog to javafx.fxml;
     exports by.radeflex.musiccatalog;
