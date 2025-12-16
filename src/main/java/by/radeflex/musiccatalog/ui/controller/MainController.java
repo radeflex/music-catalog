@@ -5,12 +5,12 @@ import by.radeflex.musiccatalog.lib.MyLinkedList;
 import by.radeflex.musiccatalog.service.TrackService;
 import by.radeflex.musiccatalog.ui.window.SaveTrackWindowFactory;
 import by.radeflex.musiccatalog.ui.entity.TrackUI;
+import by.radeflex.musiccatalog.util.FileUtils;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import java.util.Comparator;
 
@@ -83,6 +83,7 @@ public class MainController {
 
     public void deleteTrackUI(TrackUI trackUI) {
         tracks.remove(trackUI.getTrack());
+        FileUtils.delete(trackUI.getTrack().path());
         trackTable.getChildren().remove(trackUI);
     }
 

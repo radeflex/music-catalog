@@ -8,6 +8,8 @@ import by.radeflex.musiccatalog.lib.MyLinkedList;
 import by.radeflex.musiccatalog.util.TrackMapper;
 import by.radeflex.musiccatalog.database.repository.TrackRepository;
 
+import java.nio.file.Path;
+
 import static by.radeflex.musiccatalog.util.ValidationUtils.validate;
 
 public class TrackService {
@@ -25,17 +27,17 @@ public class TrackService {
                 .substring(trackCreateEditDto.file().getName().lastIndexOf(".") + 1).toUpperCase();
     }
 
-    public TrackReadDto save(TrackCreateEditDto trackCreateEditDto) throws ValidationException {
+    public TrackReadDto save(TrackCreateEditDto trackCreateEditDto, Path path) throws ValidationException {
         validate(trackCreateEditDto);
         var ext = extractExt(trackCreateEditDto);
-        var track = TrackMapper.mapFrom(trackCreateEditDto, Extension.valueOf(ext));
+        var track = TrackMapper.mapFrom(trackCreateEditDto, Extension.valueOf(ext), path);
         return TrackMapper.mapFrom(trackRepository.save(track));
     }
 
-    public TrackReadDto update(Integer id, TrackCreateEditDto trackCreateEditDto) {
+    public TrackReadDto update(Integer id, TrackCreateEditDto trackCreateEditDto, Path path) {
         validate(trackCreateEditDto);
         var ext = extractExt(trackCreateEditDto);
-        var track = TrackMapper.mapFrom(trackCreateEditDto, Extension.valueOf(ext));
+        var track = TrackMapper.mapFrom(trackCreateEditDto, Extension.valueOf(ext), path);
         track.setId(id);
         trackRepository.update(id, track);
         return TrackMapper.mapFrom(track);

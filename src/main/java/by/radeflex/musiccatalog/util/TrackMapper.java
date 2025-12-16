@@ -5,16 +5,18 @@ import by.radeflex.musiccatalog.database.entity.Extension;
 import by.radeflex.musiccatalog.database.entity.Track;
 import by.radeflex.musiccatalog.dto.TrackReadDto;
 
+import java.nio.file.Path;
+
 public class TrackMapper {
     private TrackMapper() {}
 
-    public static Track mapFrom(TrackCreateEditDto trackCreateEditDto, Extension extension) {
+    public static Track mapFrom(TrackCreateEditDto trackCreateEditDto, Extension extension, Path path) {
         var file = trackCreateEditDto.file();
         return Track.builder()
                 .title(trackCreateEditDto.title())
                 .author(trackCreateEditDto.author())
                 .genre(trackCreateEditDto.genre())
-                .path(file.toPath())
+                .path(path)
                 .duration(AudioUtils.getTrackDuration(file))
                 .extension(extension)
                 .build();

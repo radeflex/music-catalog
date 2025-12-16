@@ -7,6 +7,7 @@ import by.radeflex.musiccatalog.dto.TrackReadDto;
 import by.radeflex.musiccatalog.exception.ValidationException;
 import by.radeflex.musiccatalog.service.TrackService;
 import by.radeflex.musiccatalog.ui.entity.TrackUI;
+import by.radeflex.musiccatalog.util.FileUtils;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -66,11 +67,13 @@ public class SaveTrackController {
                 file);
         try {
             TrackReadDto trackReadDto;
+            var path = FileUtils.save(file);
             if (target != null) {
-                trackReadDto = trackService.update(target.getTrack().id(), trackDto);
+                FileUtils.delete(target.getTrack().path());
+                trackReadDto = trackService.update(target.getTrack().id(), trackDto, path);
                 mainController.updateTrackUI(target, trackReadDto);
             } else {
-                trackReadDto = trackService.save(trackDto);
+                trackReadDto = trackService.save(trackDto, path);
                 mainController.addTrackUI(trackReadDto);
             }
             ((Stage) authorField.getScene().getWindow()).close();
