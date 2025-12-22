@@ -17,7 +17,7 @@ public class TrackRepository {
     private static final TrackRepository INSTANCE =  new TrackRepository();
     private static final String FIND_ALL = "SELECT * FROM track";
     private static final String SAVE = "INSERT INTO track(title, author, genre, duration, extension, path) VALUES(?, ?, ?, ?, ?, ?) RETURNING id";
-    private static final String UPDATE = "UPDATE track SET title=?, author=?, genre=? WHERE id = ?";
+    private static final String UPDATE = "UPDATE track SET title=?, author=?, genre=?, duration=?, extension=?, path=? WHERE id = ?";
     private static final String DELETE = "DELETE FROM track WHERE id = ?";
 
     private TrackRepository() {}
@@ -71,7 +71,10 @@ public class TrackRepository {
             stmt.setString(1, track.getTitle());
             stmt.setString(2, track.getAuthor());
             stmt.setString(3, track.getGenre().toString());
-            stmt.setInt(4, id);
+            stmt.setLong(4, track.getDuration().getSeconds());
+            stmt.setString(5, track.getExtension().toString());
+            stmt.setString(6, track.getPath().toString());
+            stmt.setInt(7, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

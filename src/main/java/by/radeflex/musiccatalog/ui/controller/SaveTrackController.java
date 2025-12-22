@@ -69,7 +69,8 @@ public class SaveTrackController {
             TrackReadDto trackReadDto;
             var path = FileUtils.save(file);
             if (target != null) {
-                FileUtils.delete(target.getTrack().path());
+                if (!path.equals(target.getTrack().path()))
+                    FileUtils.delete(target.getTrack().path());
                 trackReadDto = trackService.update(target.getTrack().id(), trackDto, path);
                 mainController.updateTrackUI(target, trackReadDto);
             } else {
@@ -77,6 +78,7 @@ public class SaveTrackController {
                 mainController.addTrackUI(trackReadDto);
             }
             ((Stage) authorField.getScene().getWindow()).close();
+            file = null;
         } catch (ValidationException e) {
             authorErrorLabel.setText(e.getErrors().get("author"));
             titleErrorLabel.setText(e.getErrors().get("title"));

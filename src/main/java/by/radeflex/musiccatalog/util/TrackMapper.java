@@ -9,12 +9,12 @@ import java.nio.file.Path;
 
 public class TrackMapper {
     private TrackMapper() {}
-
     public static Track mapFrom(TrackCreateEditDto trackCreateEditDto, Extension extension, Path path) {
         var file = trackCreateEditDto.file();
+        var author = trackCreateEditDto.author();
         return Track.builder()
                 .title(trackCreateEditDto.title())
-                .author(trackCreateEditDto.author())
+                .author(author.isBlank() ? "Unknown" : author)
                 .genre(trackCreateEditDto.genre())
                 .path(path)
                 .duration(AudioUtils.getTrackDuration(file))
@@ -24,7 +24,8 @@ public class TrackMapper {
 
     public static TrackReadDto mapFrom(Track track) {
         var dur = track.getDuration();
-        var stringDuration = String.format("%d:%d", dur.toMinutes(), dur.toSeconds() - 60 * dur.toMinutes());
+        long seconds = dur.toSeconds() - 60 * dur.toMinutes();
+        String stringDuration = dur.toMinutes() + ":" + (seconds < 10 ? "0" : "") + seconds;
         return new TrackReadDto(
                 track.getId(),
                 track.getTitle(),

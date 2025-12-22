@@ -15,9 +15,6 @@ public class ValidationUtils {
         if (dto.title().length() > 30) {
             map.put("title", "максимум 30 символов");
         }
-        if (dto.author().isBlank()) {
-            map.put("author", "не может быть пустым");
-        }
         if (dto.author().length() > 30) {
             map.put("author", "максимум 30 символов");
         }
